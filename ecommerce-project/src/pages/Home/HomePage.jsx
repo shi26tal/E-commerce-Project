@@ -41,7 +41,8 @@ const HomePage = ({ cart, loadCart }) => {
 
   return (
     <>
-      <title>Ecommerce Project</title>
+    {/* header directy inside code with out wrapping them in helmet */}
+      <title>Ecommerce Project</title> 
       <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
       <Header cart={cart} />
 
