@@ -6,7 +6,21 @@ import SearchIcon from "../assets/images/icons/search-icon.png";
 import LogoWhite from "../assets/images/logo-white.png";
 import MobileLogoWhite from "../assets/images/mobile-logo-white.png";
 
-const Header = ({ cart }) => {
+//Binding element 'cart' implicitly has an 'any' type.ts(7031)
+//(parameter) cart: any 
+//this means : ts doesnot have enough information to figure out the type.so we have to set the type manually.
+
+type HeaderProps = {
+  cart: {
+    productId: string;
+    quantity: number;
+    deliveryOptionId: string;
+  }[];
+}
+
+//this is called type alias = works like a variable, but for types
+
+const Header = ({ cart }: HeaderProps ) => {
 
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -17,7 +31,7 @@ const Header = ({ cart }) => {
 
   
 
-  const handleSearchBar = (event) => {
+  const handleSearchBar = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
@@ -50,8 +64,8 @@ const Header = ({ cart }) => {
             onChange={handleSearchBar}
           />
 
-          <button className="search-button">
-            <img className="search-icon" src={SearchIcon} onClick={searchProducts}/>
+          <button className="search-button" onClick={searchProducts}>
+            <img className="search-icon" src={SearchIcon} />
           </button>
         </div>
 
